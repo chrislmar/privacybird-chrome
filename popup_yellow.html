@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script type="text/javascript" src="src/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="src/popup.js"></script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="scrollbar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="popup.css" />
+
+    <title>Privacy Bird for Chrome - Popup page</title>
+
+    <script>
+
+    $(document).ready(function(){
+    
+        //Hide (Collapse) the toggle containers on load
+        $(".toggle_container").hide(); 
+
+        //$(".toggle_container#check_container").show(); 
+        $("h3.trigger#check_trigger").toggleClass("active").next().toggle();
+    
+        //Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
+        $("h3.trigger").click(function(){
+            $(this).toggleClass("active").next().slideToggle("100");
+            //$(this).toggleClass("active").next().toggle();
+
+            var show_hide = $("h3#check_trigger span");
+            if (show_hide.text() == "Click to hide") {
+                show_hide.text("Click to show");
+            } else {
+                show_hide.text("Click to hide");
+            }
+
+            return false; //Prevent the browser jump to the link anchor
+        });
+    
+    });
+
+    </script>
+
+</head>
+<body id="body">
+
+    <h3 class="title">Privacy Bird</h3>
+    </script>
+    <a id="refresh_button" href="javascript:refreshSite()" title="Refresh this site's policy"><span>Refresh</span></a>
+    <div id="exit">
+        <a href="javascript:exitPopup()" class="exit"></a>
+    </div>
+
+    <br />
+    <br />
+    
+    <h3 class="trigger" id="check_trigger">
+        <div id="header_check_yellow">
+            <div class="header_text">
+                <a href="#">Policy Check: <span class="small">Click to hide</span></a>
+            </div>
+        </div>
+    </h3>
+    <div class="toggle_container" id="check_container">
+        <div class="block">
+        <script>
+            if (localStorage["trigger_count"] == -1) {
+                document.write('This site does not have a P3P policy.');
+            } else {
+                document.write('This site has an invalid P3P policy.');
+                document.write('<br /><br />');
+                document.write('<a href="javascript:newTab(\'http://validator.privacyfinder.org/p3p/20020128/p3p.pl?uri='+localStorage["current_tab_url"]+'\')" title="See why this policy is invalid">Click here to see why this P3P policy is invalid.</a>');
+            }
+        </script>
+        </div> <!-- end block -->
+    </div> <!-- end toggle container -->
+
+    <br />
+    <br />
+
+    <div id="more">
+        <hr />
+        <div class="options">
+            <img src="img/wrench_hover.png" alt="" /><a href="javascript:openOptions()" id="options" title="Go to the options page">Options &raquo;</a>
+        </div>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,534 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script type="text/javascript" src="src/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="src/popup.js"></script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="scrollbar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="popup.css" />
+
+    <title>Privacy Bird for Chrome - Popup page</title>
+
+    <script>
+
+    $(document).ready(function(){
+    
+        //Hide (Collapse) the toggle containers on load
+        $(".toggle_container").hide(); 
+
+        //$(".toggle_container#check_container").show(); 
+        $("h3.trigger#check_trigger").toggleClass("active").next().toggle();
+    
+        //Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
+        $("h3.trigger").click(function(){
+            $(this).toggleClass("active").next().slideToggle("100");
+            //$(this).toggleClass("active").next().toggle();
+
+            var show_hide = $(this).find("span.small");
+            if (show_hide.text() == "Click to hide") {
+                show_hide.text("Click to show");
+            } else {
+                show_hide.text("Click to hide");
+            }
+
+            return false; //Prevent the browser jump to the link anchor
+        });
+    
+    });
+
+    </script>
+
+</head>
+<body id="body">
+
+    <script>
+    if (localStorage["ent_name"] != 'null') {
+        var str = localStorage["ent_name"];
+        if (str.length > 30) {
+            str = str.substring(0,29) + '...';
+        }
+        document.write('<h3 class="title">Privacy Practices of '+str+'</h3>');
+    }
+    </script>
+    <a id="refresh_button" href="javascript:refreshSite()" title="Refresh this site's policy"><span>Refresh</span></a>
+    <div id="exit">
+        <a href="javascript:exitPopup()" class="exit"></a>
+    </div>
+
+    <br />
+    <br />
+    
+    <h3 class="trigger" id="check_trigger">
+        <script>
+            if (localStorage["trigger_count"] == 0) {
+                document.write('<div id="header_check_green">');
+            } else {
+                document.write('<div id="header_check_red">');
+            }
+        </script>
+            <div class="header_text">
+                <a href="#">Policy Check: <span class="small">Click to hide</span></a>
+            </div>
+        </div>
+    </h3>
+    <div class="toggle_container" id="check_container">
+        <div class="block">
+            <script>
+                if (localStorage["trigger_count"] == 0) {
+                    document.write('There are no warnings for this site.');
+                } else if (localStorage["trigger_count"] == 1) {
+                    document.write('There is <b class="warn">' + localStorage["trigger_count"] + '</b> warning for this site.');
+                } else if (localStorage["trigger_count"] == -1) {
+                    document.write('This site does not have a P3P policy.');
+                } else if (localStorage["trigger_count"] == -2) {
+                    document.write('This site has an invalid P3P policy.');
+                } else {
+                    document.write('There are <b class="warn">' + localStorage["trigger_count"] + '</b> warnings for this site.');
+                }
+            </script>
+            <ol>
+            <script>
+                if (localStorage["trigger_hmi_0"] == 'true') {
+                    document.write('<li>This site may use your <b>health or medical information</b> for analysis, marketing, or to make decisions that affect what content or ads you see.</li>');
+                }
+                if (localStorage["trigger_hmi_1"] == 'true') {
+                    document.write('<li>This site may share your <b>health or medical information</b> with other companies (other than those helping provide services to you).</li>');
+                }
+                if (localStorage["trigger_fpi_0"] == 'true') {
+                    document.write('<li>This site may use your <b>financial or purchasing information</b> for analysis, marketing, or to make decisions that affect what content or ads you see.</li>');
+                }
+                if (localStorage["trigger_fpi_1"] == 'true') {
+                    document.write('<li>This site may share <b>financial or purchasing information</b> with other companies (other than those helping provide services to you).</li>');
+                }
+                if (localStorage["trigger_pii_0"] == 'true') {
+                    document.write('<li>This site may contact you <b>via telephone</b>.</li>');
+                }
+                if (localStorage["trigger_pii_1"] == 'true') {
+                    document.write('<li>This site may contact you <b>via other means (email, postal mail, etc.)</b>.</li>');
+                }
+                if (localStorage["trigger_pii_2"] == 'true') {
+                    document.write('<li>This site may contact you and <b>does not allow you to remove yourself from marketing/mailing lists</b>.</li>');
+                }
+                if (localStorage["trigger_pii_3"] == 'true') {
+                    document.write('<li>This site may use <b>information that personally identifies you</b> to determine your habits, interests, or other characteristics.</li>');
+                }
+                if (localStorage["trigger_pii_4"] == 'true') {
+                    document.write('<li>This site share <b>information that personally identifies you</b> with other companies (other than those helping provide services to you).</li>');
+                }
+                if (localStorage["trigger_pii_5"] == 'true') {
+                    document.write('<li>This site <b>does not allow you to find out what data they have about you</b>.</li>');
+                }
+                if (localStorage["trigger_nii_0"] == 'true') {
+                    document.write('<li>This site may use <b>non-personally indentifiable information</b> to determine your habits, interests, or other characteristics.</li>');
+                }
+                if (localStorage["trigger_nii_1"] == 'true') {
+                    document.write('<li>This site may share <b>non-personally indentifiable information</b> with other companies (other than those helping provide services to you).</li>');
+                }
+                if (localStorage["trigger_other"] == 'true') {
+                    document.write('<li>This site collects data for <b>an unknown purpose</b>.</li>');
+                }
+            </script>
+            </ol>
+            <div class="info">
+            <script>
+                if (localStorage["trigger_count"] > 0) {
+                    document.write('<a href="javascript:info()" id="info">Click here</a> for more information about what these warnings mean.');
+                }
+            </script>
+            </div>
+        </div> <!-- end block -->
+    </div> <!-- end toggle container -->
+
+    <br />
+    <br />
+    
+    <h3 class="trigger">
+        <script>
+            if (localStorage["trigger_count"] == 0) {
+                document.write('<div id="header_summary_green">');
+            } else {
+                document.write('<div id="header_summary_red">');
+            }
+        </script>
+            <div class="header_text">
+            <a href="#">Policy Summary:<span class="small">Click to show</span></a>
+            </div>
+        </div>
+    </h3>
+    </script>
+    <div class="toggle_container">
+    <div class="block">
+            <script>
+            if (localStorage["trigger_count"] >= 0) {
+                document.write('<h4>This site may collect the following types of information about you:</h4>');
+            }
+            </script>
+            <ul>
+                <script>
+                if (localStorage["cat_user_name"] == 'true') {
+                    document.write('<li>Your name.</li>');
+                }
+                if (localStorage["cat_user_bdate"] == 'true') {
+                    document.write('<li>Your birthdate.</li>');
+                }
+                if (localStorage["cat_user_cert"] == 'true') {
+                    document.write('<li>Your identity certificate.</li>');
+                }
+                if (localStorage["cat_user_gender"] == 'true') {
+                    document.write('<li>Your gender.</li>');
+                }
+                if (localStorage["cat_user_employer"] == 'true') {
+                    document.write('<li>Your employer.</li>');
+                }
+                if (localStorage["cat_user_department"] == 'true') {
+                    document.write('<li>The department or division of the organization where you are employed.</li>');
+                }
+                if (localStorage["cat_user_jobtitle"] == 'true') {
+                    document.write('<li>Your job title.</li>');
+                }
+                if (localStorage["cat_user_home-info"] == 'true') {
+                    document.write('<li>Your home contact information.</li>');
+                }
+                if (localStorage["cat_user_business-info"] == 'true') {
+                    document.write('<li>Your business contact information.</li>');
+                }
+                if (localStorage["cat_user_login"] == 'true') {
+                    document.write('<li>Your login information - username and password.</li>');
+                }
+
+                if (localStorage["cat_third_name"] == 'true') {
+                    document.write('<li>Third party\'s name.</li>');
+                }
+                if (localStorage["cat_third_bdate"] == 'true') {
+                    document.write('<li>Third party\'s birthdate.</li>');
+                }
+                if (localStorage["cat_third_cert"] == 'true') {
+                    document.write('<li>Third party\'s identity certificate.</li>');
+                }
+                if (localStorage["cat_third_gender"] == 'true') {
+                    document.write('<li>Third party\'s gender.</li>');
+                }
+                if (localStorage["cat_third_employer"] == 'true') {
+                    document.write('<li>Third party\'s employer.</li>');
+                }
+                if (localStorage["cat_third_department"] == 'true') {
+                    document.write('<li>The department or division of the organization where a third party is employed.</li>');
+                }
+                if (localStorage["cat_third_jobtitle"] == 'true') {
+                    document.write('<li>Third party\'s job title.</li>');
+                }
+                if (localStorage["cat_third_home-info"] == 'true') {
+                    document.write('<li>Third party\'s home contact information.</li>');
+                }
+                if (localStorage["cat_third_business-info"] == 'true') {
+                    document.write('<li>Third party\'s business contact information.</li>');
+                }
+                if (localStorage["cat_third_login"] == 'true') {
+                    document.write('<li>Third party\'s login information - username and password.</li>');
+                }
+
+                if (localStorage["cat_dyn_clickstream"] == 'true') {
+                    document.write('<li>Clickstream information (usually stored in standard web server logs).</li>');
+                }
+                if (localStorage["cat_dyn_http"] == 'true') {
+                    document.write('<li>HTTP protocol information (usually stored in standard web server logs) - includes user agent information and Referer header.</li>');
+                }
+                if (localStorage["cat_dyn_clientevents"] == 'true') {
+                    document.write('<li>Information about a your interaction with a web browser while visiting a site.</li>');
+                }
+                if (localStorage["cat_dyn_cookies"] == 'true') {
+                    document.write('<li>HTTP cookies.</li>');
+                }
+                if (localStorage["cat_dyn_searchtext"] == 'true') {
+                    document.write('<li>Search terms.</li>');
+                }
+                if (localStorage["cat_dyn_interactionrecord"] == 'true') {
+                    document.write('<li>Records about your interaction with the site.</li>');
+                }
+
+                if (localStorage["cat_physical"] == 'true') {
+                    document.write('<li>Information that allows the site to contact you in the physical world.</li>');
+                }
+                if (localStorage["cat_online"] == 'true') {
+                    document.write('<li>Information that allows the site to contact you on the Internet.</li>');
+                }
+                if (localStorage["cat_uniqueid"] == 'true') {
+                    document.write('<li>Nonfinancial identifiers used to identify or recognize you.</li>');
+                }
+                if (localStorage["cat_purchase"] == 'true') {
+                    document.write('<li>Information actively generated by the purchase of products or services.</li>');
+                }
+                if (localStorage["cat_financial"] == 'true') {
+                    document.write('<li>Information about your finances (bank accounts, credit/debit history, etc).</li>');
+                }
+                if (localStorage["cat_computer"] == 'true') {
+                    document.write('<li>Information about the computer system you are using.</li>');
+                }
+                if (localStorage["cat_navigation"] == 'true') {
+                    document.write('<li>Navigation and clickstream data generated by browsing the web site.</li>');
+                }
+                if (localStorage["cat_interactive"] == 'true') {
+                    document.write('<li>Data generated from or reflecting explicit interactions with the site.</li>');
+                }
+                if (localStorage["cat_demographic"] == 'true') {
+                    document.write('<li>Demographic and socioeconomic data.</li>');
+                }
+                if (localStorage["cat_content"] == 'true') {
+                    document.write('<li>The words and expressions contained in the body of communications.</li>');
+                }
+                if (localStorage["cat_state"] == 'true') {
+                    document.write('<li>Mechanisms for managing sessions or automatically recognizing you.</li>');
+                }
+                if (localStorage["cat_political"] == 'true') {
+                    document.write('<li>Information about membership in or affiliation with organizations.</li>');
+                }
+                if (localStorage["cat_health"] == 'true') {
+                    document.write('<li>Information about your physical or mental health, sexual orientation, and use of health services.</li>');
+                }
+                if (localStorage["cat_preference"] == 'true') {
+                    document.write('<li>Data about your likes and dislikes.</li>');
+                }
+                if (localStorage["cat_location"] == 'true') {
+                    document.write('<li>Information that can be used to identify and track your physical location.</li>');
+                }
+                if (localStorage["cat_government"] == 'true') {
+                    document.write('<li>Government-issued identifiers.</li>');
+                }
+                if (localStorage["cat_other-category"] == 'true') {
+                    if (localStorage["cat_other-category_str"] == 'null' ||
+                        localStorage["cat_other-category_str"] == null ||
+                        localStorage["cat_other-category_str"] == undefined ||
+                        localStorage["cat_other-category_str"] == '') {
+                        document.write('<li>Information in other unknown categories.</li>');
+                    } else {
+                        document.write('<li>Information in other categories: '+localStorage["cat_other-category_str"]+'</li>');
+                    }
+                }
+                </script>
+            </ul>
+
+            <script>
+            if (localStorage["trigger_count"] >= 0) {
+                document.write('<h4>The ways your information may be used:</h4>');
+            }
+            </script>
+            <ul>
+                <script>
+                if (localStorage["purp_current"] == 'true') {
+                    document.write('<li>Completion and support of activity for which data was provided.</li>');
+                }
+                if (localStorage["purp_admin"] == 'true') {
+                    document.write('<li>Web site and system administration, solely for the technical support of the web site and its computer system.</li>');
+                }
+                if (localStorage["purp_develop"] == 'true') {
+                    document.write('<li>Research and development to enhance, evaluate, or otherwise review the site, service, product, or market.</li>');
+                }
+                if (localStorage["purp_tailoring"] == 'true') {
+                    document.write('<li>One-time modifications of the content or design of the site for a single visit.</li>');
+                }
+                if (localStorage["purp_pseudo-analysis"] == 'true') {
+                    document.write('<li>Creation of a pseudonymous profile used to determine your habits, interests, etc... for the purpose of research, analysis, and reporting.</li>');
+                }
+                if (localStorage["purp_pseudo-decision"] == 'true') {
+                    document.write('<li>Creation of a pseudonymous profile used to determine your habits, interests, etc... to make a decision that directly affects you.</li>');
+                }
+                if (localStorage["purp_individual-analysis"] == 'true') {
+                    document.write('<li>To determine your habits, interests, or other characteristics for the purpose of research, analysis, and reporing.</li>');
+                }
+                if (localStorage["purp_individual-decision"] == 'true') {
+                    document.write('<li>To determine your habits, interests, or other characteristics to make a decision that directly affects you.</li>');
+                }
+                if (localStorage["purp_telemarketing"] == 'true') {
+                    document.write('<li>To contact you via telephone for the promotion of products or services.</li>');
+                }
+                if (localStorage["purp_contact"] == 'true') {
+                    document.write('<li>To contact you through a communication channel other than voice telephone, for the promotion of products or services.</li>');
+                }
+                if (localStorage["purp_historical"] == 'true') {
+                    document.write('<li>Archived or stored for the purpose of preserving social history as governed by existing law or policy.</li>');
+                }
+                if (localStorage["purp_other-purpose"] == 'true') {
+                    if (localStorage["purp_other-purpose_str"] == 'null' ||
+                        localStorage["purp_other-purpose_str"] == null ||
+                        localStorage["purp_other-purpose_str"] == undefined ||
+                        localStorage["purp_other-purpose_str"] == '') {
+                        document.write('<li>Other unkown purposes.</li>');
+                    } else {
+                        document.write('<li>Other purposes: '+localStorage["purp_other-purpose_str"]+'</li>');
+                    }
+                }
+                </script>
+            </ul>
+
+            <script>
+            if (localStorage["trigger_count"] >= 0) {
+                document.write('<h4>With whom this site may share your information:</h4>');
+            }
+            </script>
+            <ul>
+                <script>
+                if (localStorage["rec_ours"] == 'true') {
+                    document.write('<li>Themselves and/or their agents (third parties that process your data on behalf of the web site for the completion of the stated purpose).</li>');
+                }
+                if (localStorage["rec_delivery"] == 'true') {
+                    document.write('<li>Delivery services possible following different practices.</li>');
+                }
+                if (localStorage["rec_same"] == 'true') {
+                    document.write('<li>Organizations following the same practices as this site.</li>');
+                }
+                if (localStorage["rec_other-recipient"] == 'true') {
+                    document.write('<li>Organizations following different practices.</li>');
+                }
+                if (localStorage["rec_unrelated"] == 'true') {
+                    document.write('<li>Unrelated third parties whose data practices are unknown.</li>');
+                }
+                if (localStorage["rec_public"] == 'true') {
+                    document.write('<li>Public forums.</li>');
+                }
+                </script>
+            </ul>
+
+            <script>
+            if (localStorage["trigger_count"]  >= 0 && localStorage["access_count"] > 0) {
+                document.write('<h4>Access to your identified data:</h4>');
+            }
+            </script>
+            <ul>
+                <script>
+                if (localStorage["access_nonident"] == 'true') {
+                    document.write('<li>This web site does not collect identified data.</li>');
+                }
+                if (localStorage["access_all"] == 'true') {
+                    document.write('<li>This web site gives you access to all the data it collects that is identified with you.</li>');
+                }
+                if (localStorage["access_contact-and-other"] == 'true') {
+                    document.write('<li>This web site gives you access to your contact information and some of its other information identified with you.</li>');
+                }
+                if (localStorage["access_ident-contact"] == 'true') {
+                    document.write('<li>This web site gives you access to some or all of the contact information it has identified with you.</li>');
+                }
+                if (localStorage["access_ident-contact"] == 'true') {
+                    document.write('<li>This web site gives you access to information other than identified contact information.</li>');
+                }
+                if (localStorage["access_none"] == 'true') {
+                    document.write('<li>This web site does not allow you to access any of the information it has identified with you.</li>');
+                }
+                </script>
+            </ul>
+
+            <script>
+            if (localStorage["trigger_count"] >= 0 && localStorage["contact_count"] > 0) {
+                document.write('<h4>How to reach this site:</h4>');
+            }
+            </script>
+            <div class="indented">
+                <script>
+                if (localStorage["ent_contact-info.postal.organization"] != 'null') {
+                    document.write(localStorage["ent_contact-info.postal.organization"] + '<br />');
+                } else if (localStorage["ent_name"] != 'null') {
+                    document.write(localStorage["ent_name"] + '<br />');
+                }
+                if (localStorage["ent_contact-info.postal.street"] != 'null') {
+                    // convert \n to <br />
+                    var str = localStorage["ent_contact-info.postal.street"];
+                    var idx = str.lastIndexOf('\n');
+                    var len = str.length;
+                    if (idx == len-1) {
+                        str = str.substring(0, idx);
+                    }
+                    str = str.replace(/\n/g, '<br />');
+                    // TODO check if str ends in \n or <br />
+                    document.write(str + '<br />');
+                }
+                if (localStorage["ent_contact-info.postal.city"] != 'null') {
+                    document.write(localStorage["ent_contact-info.postal.city"] + ', ');
+                }
+                if (localStorage["ent_contact-info.postal.stateprov"]  != 'null') {
+                    document.write(localStorage["ent_contact-info.postal.stateprov"] + ' ');
+                }
+                if (localStorage["ent_contact-info.postal.postalcode"] != 'null') {
+                    document.write(localStorage["ent_contact-info.postal.postalcode"] + ' ');
+                }
+                if (localStorage["ent_contact-info.postal.country"] != 'null') {
+                    document.write(localStorage["ent_contact-info.postal.country"] + '<br />');
+                }
+                if (localStorage["ent_contact-info.telecom.telephone.number"] != 'null') {
+                    document.write('phone: '+localStorage["ent_contact-info.telecom.telephone.number"] + '<br />');
+                }
+                if (localStorage["ent_contact-info.online.email"] != 'null') {
+                    document.write('email: '+localStorage["ent_contact-info.online.email"] + '<br />');
+                }
+                if (localStorage["ent_contact-info.online.uri"] != 'null') {
+                    document.write('<a href="javascript:newTab(\''+localStorage["ent_contact-info.online.uri"]+'\')">'+localStorage["ent_contact-info.online.uri"]+'</a><br />');
+                }
+                </script>
+            </div>
+
+            <script>
+            if (localStorage["trigger_count"] >= 0 && localStorage["disp_count"] > 0) {
+                document.write('<h4>How to resolve privacy-related disputes with this site:</h4>');
+            }
+            </script>
+            <div class="indented">
+                <script>
+                if (localStorage["disp_type"] != 'null') {
+                    var arrResType = localStorage["disp_type"].split(";");
+                    var arrService = localStorage["disp_serv"].split(";");
+                    var arrShort   = localStorage["disp_short"].split(";");
+                    var arrLong    = localStorage["disp_long"].split(";");
+                    var count = 0;
+                    var aType  = arrResType[count];
+                    var aServ  = arrService[count];
+                    var aShort = arrShort[count];
+                    var aLong  = arrLong[count];
+                    while (aType != 'null') {
+                        document.write('<a href="javascript:newTab(\''+aServ+'\')">'+aShort+'</a>: '+aLong+'<br />');
+                        count++;
+                        aType  = arrResType[count];
+                        aServ  = arrService[count];
+                        aShort = arrShort[count];
+                        aLong  = arrLong[count];
+
+                        if (aType != 'null')
+                            document.write('<br />');
+                    }
+                }
+                </script>
+            </div>
+
+            <script>
+            if (localStorage["trigger_count"] >= 0 && localStorage["discuri"] != 'null') {
+                document.write('<h4>More information:</h4>');
+            }
+            </script>
+            <div class="indented">
+                <script>
+                if (localStorage["discuri"] != 'null') {
+                    document.write('<a href="javascript:newTab(\''+localStorage["discuri"]+'\')">Read this site\'s full privacy policy</a><br />');
+                }
+                </script>
+            </div>
+        
+    </div> <!-- end block -->
+    </div> <!-- end toggle container -->
+    
+    <br />
+    <br />
+    
+    <div id="more">
+        <hr />
+        <div class="nutrition">
+        <script>
+            document.write('<a href="javascript:newTab(\'http://www.privacyfinder.org/policy_details?url='+localStorage["current_tab_url"]+'\')" id="nutrition">Nutrition Label</a>: A visual representation of the P3P policy. ');
+        </script>
+        </div>
+        <div class="options">
+            <img src="img/wrench_hover.png" alt="" /><a href="javascript:openOptions()" id="options" title="Go to the options page">Options &raquo;</a>
+        </div>
+    </div>
+
+</body>
+</html>
+

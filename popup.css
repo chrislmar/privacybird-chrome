@@ -1,0 +1,186 @@
+/* CSS for Privacy Bird for Chrome popup.html */
+
+html {    
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+body {
+    position: relative;
+    width: 530px;
+    overflow: hidden;
+    font-family: Sans-Serif;
+    font-size: 0.8em;    
+    padding-right: 15px;
+    padding-bottom: 5px;
+}
+
+body a, body a:visited {
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px dotted black;
+}
+
+body a:hover {
+    border-bottom: 1px solid black;
+}
+
+div.nutrition {
+    float: left;
+    /*padding: 0 0 0 20px;*/
+    margin: 0 0 0 20px;
+}
+
+h3.title {
+    position: absolute;
+    top: 0px;
+    left: 25px;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+a#refresh_button {
+    position: absolute;
+    top: 1px;
+    left: 440px;
+    background: url(img/refresh.png) no-repeat; 
+    height: 16px;
+    width: 60px;
+    border: 0px;
+    text-align: center;
+    margin: 1px;
+}
+
+a#refresh_button:hover {
+    border: 0px;
+    background-position: 0px -16px;
+}
+
+#refresh_button span {
+    color: white;
+    font-size: 90%;
+}
+
+div.options {
+    float: right;
+    margin-right: 10px;
+}
+
+div.options img {
+    vertical-align: text-bottom;
+    padding-right: 2px;
+}
+
+div#exit {
+    display: block;
+    float: right;
+    padding-right: 5px;
+    height: 16px;
+    margin-top: 2px;
+    width: 16px;
+}
+
+a.exit {
+    display: block;
+    float: right;
+    border-bottom: 0px;
+    background: url(img/close.png) no-repeat;
+    height: 16px;
+    width: 16px;
+}
+
+a.exit:hover {
+    border-bottom: 0px;
+    background-position: 0px -16px;
+}
+
+div#header_check_red, div#header_summary_red {
+    position: relative;
+    /*background-color: red;*/
+    background-color: #ff9999;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d6d6d6;
+    z-index: 10000;
+}
+div#header_check_green, div#header_summary_green {
+    position: relative;
+    /*background-color: #1EDF08;*/
+    background-color: #99ff99;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d6d6d6;
+    z-index: 10000;
+}
+div#header_check_yellow, div#header_summary_yellow {
+    position: relative;
+    /*background-color: yellow;*/
+    background-color: #ffff99;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d6d6d6;
+    z-index: 10000;
+}
+
+div.header_text {
+    /*padding-left: 10px;*/
+}
+
+div.indented {
+    padding-left: 20pt;
+}
+
+span.small {
+    position: absolute;
+    top: 0px;
+    left: 413px;
+    font-size: 80%;
+    font-weight: normal;
+}
+
+
+/* for toggle */
+/* top, right, bottom, left*/
+h3.trigger {
+    position: relative;
+    padding: 0 0 0 25px;
+    margin: 0 0 0 0;
+    background: url(img/trigger_a.png) no-repeat;
+    height: 20px;
+    line-height: 20px;
+    width: 500px;
+    float: left;
+}
+h3.trigger a {
+    position: relative;
+    color: black;
+    text-decoration: none;
+    display: block;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 1px;
+    padding-left: 10px;
+}
+h3.trigger a:hover {
+    /*color: #999999;*/
+    border: 1px solid black;
+}
+h3.active {
+    background-position: left bottom;
+} /*--When toggle is triggered, it will shift the image to the bottom to show its "opened" state--*/
+.toggle_container {
+    padding: 0 0 0 0;
+    margin: 0 0 0 25px;
+    border-top: 1px solid #d6d6d6;
+    background: #f0f0f0 url(img/toggle_block_stretch.gif) repeat-y left top;
+    overflow: hidden;
+    width: 500px;
+    clear: both;
+}
+.toggle_container .block {
+    padding: 10px; /*--Padding of Container--*/
+    background: url(img/toggle_block_btm.gif) no-repeat left bottom; /*--Bottom rounded corners--*/
+}
+
+

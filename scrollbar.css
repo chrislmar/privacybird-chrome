@@ -1,0 +1,19 @@
+::-webkit-scrollbar {  
+    height: 1ex;  
+    width: 1ex;
+    padding-left: 2px;
+    padding-right: 10px;
+}  
+  
+::-webkit-scrollbar-thumb:vertical {
+    -webkit-border-radius: 3px;
+    background: rgba(0, 0, 0, .2);  
+} 
+
+::-webkit-scrollbar-track:vertical {
+    background-color: white;
+}
+ 
+::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+}

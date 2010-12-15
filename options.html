@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+    <title>Options for Privacy Bird for Chrome</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="general.css" />
+
+    <script type="text/javascript" src="src/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="src/options.js"></script>
+    
+    <script>
+    
+
+    </script>
+
+</head>
+<body onload="restore_options()">
+
+<div id="main">
+    <h1 class="title">Privacy Bird for Chrome</h1>
+    <form name="options">
+    <table>
+        <tr>
+            <td style="background-color: #ffffff">                
+                <span class="top_right"><img src="img/green-bird-mag_48.png"></span>
+                <br />
+                <h1>Options</h1>
+            </td>
+        </tr>
+        <tr>
+        <td  style="padding: 4">
+            <h3>Select Privacy Level:</h3>
+            <input type="radio" name="priv_lvl" id="priv_lvl_0" value="0" onClick="priv_lvl_low()"/> <label for="priv_lvl_0">Low</label>
+            <input type="radio" name="priv_lvl" id="priv_lvl_1" value="1" onClick="priv_lvl_med()"/> <label for="priv_lvl_1">Medium</label>
+            <input type="radio" name="priv_lvl" id="priv_lvl_2" value="2" onClick="priv_lvl_high()"/> <label for="priv_lvl_2">High</label>
+            <input type="radio" name="priv_lvl" id="priv_lvl_3" value="3" onClick="priv_lvl_cust()"/> <label for="priv_lvl_3">Custom</label>
+            <h3>Health or Medical Information</h3>
+            Warn me at web sites that may use my health or medical information:
+            <br /><input type="checkbox" name="hmi_0" id="hmi_0" onClick="priv_lvl_cust()"/> <label for="hmi_0">For analysis or marketing that may affect what content or ads I see, etc...</label>
+            <br /><input type="checkbox" name="hmi_1" id="hmi_1" onClick="priv_lvl_cust()"/> <label for="hmi_1">To share with other companies (other than those helping the web site provide services)</label>
+            <br />
+            <h3>Financial or Purchase Information</h3>
+            Warn me at web sites that use my financial information or information about my purchases:
+            <br /><input type="checkbox" name="fpi_0" id="fpi_0" onClick="priv_lvl_cust()"/> <label for="fpi_0">For analysis or marketing that may affect what content or ads I see, etc...</label>
+            <br /><input type="checkbox" name="fpi_1" id="fpi_1" onClick="priv_lvl_cust()"/> <label for="fpi_1">To share with other companies (other than those helping the web site provide services)</label>
+            <br />
+            <h3>Personally Identified Information (name, address, phone number, email address)</h3>
+            Warn me at web sites that may contact me to interest me in other products or services:
+            <br /><input type="checkbox" name="pii_0" id="pii_0" onClick="priv_lvl_cust()"/> <label for="pii_0">Via telephone</label>
+            <br /><input type="checkbox" name="pii_1" id="pii_1" onClick="priv_lvl_cust()"/> <label for="pii_1">Via other means (email, postal mail, etc...)</label>
+            <br /><input type="checkbox" name="pii_2" id="pii_2" onClick="priv_lvl_cust()"/> <label for="pii_2">And do not allow me to remove myself from marketing/mailing lists</label>
+            <br /><br />
+            Warn me at web sites that use information that personally identifies me:
+            <br /><input type="checkbox" name="pii_3" id="pii_3" onClick="priv_lvl_cust()"/> <label for="pii_3">To determine my habits, interests, or other characteristics</label>
+            <br /><input type="checkbox" name="pii_4" id="pii_4" onClick="priv_lvl_cust()"/> <label for="pii_4">To share with other companies (other than those helping the web site provide services)</label>
+            <br />
+            <br /><input type="checkbox" name="pii_5" id="pii_5" onClick="priv_lvl_cust()"/> <label for="pii_5">Warn me at web sites that do not allow me to find out what data they have about me</label>
+            <h3>Non-Personally Identified Information (demographics, interests, web history)</h3>
+            Warn me at web sites that use my non-personally identified information:
+            <br /><input type="checkbox" name="nii_0" id="nii_0" onClick="priv_lvl_cust()"/> <label for="nii_0">To determine my habits, interests, or other characteristics</label>
+            <br /><input type="checkbox" name="nii_1" id="nii_1" onClick="priv_lvl_cust()"/> <label for="nii_1">To share with other companies (other than those providing services to me)</label>
+            <br />
+            <br />
+            <br /><input type="checkbox" name="all_sound_off" id="all_sound_off" onClick="disable_all_sound()"/> <label for="all_sound_off">Disable all notification sounds</label>
+            <br /><input type="checkbox" name="match_sound_off" id="match_sound_off" onClick="disable_one_sound()"/> <label for="match_sound_off">Disable Matched notification sounds</label>
+            <br /><input type="checkbox" name="unmatch_sound_off" id="unmatch_sound_off" onClick="disable_one_sound()"/> <label for="unmatch_sound_off">Disable Unmatched notification sounds</label>
+            <br /><input type="checkbox" name="unknown_sound_off" id="unknown_sound_off" onClick="disable_one_sound()"/> <label for="unknown_sound_off">Disable Unknown notification sounds</label>
+        </td>
+        </tr>
+        <tr>
+            <td>
+                <h1 style="margin-bottom: 0"><img src="img/information_big.png" alt="" />&nbsp;&nbsp;<a href="about.html" title="Go to the about page">About &raquo;</a></h1>
+            </td>
+        </tr>
+    </table>
+    <button onclick="save_options()" style="width: 130px;height: 30px; float: right; margin-top: 4px;">Save &amp; Reload</button>
+    </form>
+</div>
+<br />
+<br />
+<br />
+</body>
+</html>
